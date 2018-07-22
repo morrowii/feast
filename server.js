@@ -10,10 +10,6 @@ var port = process.env.PORT;
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-app.get('/', function (req, res) {
-    res.render('index');
-});
-
 app.use('/', feastRoutes);
 app.use(bparse.urlencoded({ extended: true }));
 app.use(bparse.text());

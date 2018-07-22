@@ -33,7 +33,7 @@
                         <label for="feast-input"></label>
                         <textarea class="form-control" id="feast-input" rows="5"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Fill Your Plate</button>
+                    <button type="submit" class="btn btn-primary" id='order-button'>Fill Your Plate</button>
                 </form>
             </div>
         </div>
@@ -45,5 +45,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+    <script>
+
+        $('form').on('click', '#order-button', function() {
+            event.preventDefault();
+            var feastOrder = {
+                feast_name: $('textarea').text(),
+                devoured: 0
+            };
+            $.post('/insert', feastOrder);
+        });
+
+    </script>
+
   </body>
 </html>

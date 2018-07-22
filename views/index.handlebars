@@ -1,8 +1,20 @@
 
-<div class='col-6'>
-    
-</div>
+{{#each feasts}}
 
-<div class='col-6'>
+    {{#unless devoured}}
 
-</div>
+        <div class='col-6'>
+            
+        </div>
+
+    {{/unless}}
+
+    {{#if devoured}}
+
+        <div class='col-6'>
+
+        </div>
+
+    {{/if}}
+
+{{/each}}

@@ -10,8 +10,9 @@ module.exports = function ORM(table) {
         
         var query = `SELECT * FROM ${this.tableName}`;
 
-        connection.query(query, function(err) {
+        connection.query(query, function(err, data) {
             if (err) throw err;
+            return data;
         });
 
     }
@@ -25,7 +26,7 @@ module.exports = function ORM(table) {
         var secured = keys.concat(values);
         var query = `INSERT INTO ${this.tableName} (${escapes}) VALUES (${escapes})`
 
-        connection.query(query, secured, function(err) {
+        connection.query(query, secured, function(err, data) {
             if (err) throw err;
         });
 
@@ -46,7 +47,7 @@ module.exports = function ORM(table) {
 
         var query = `UPDATE ${this.tableName} SET ${escapes} WHERE ? = ?`;
 
-        connection.query(query, secured, function(err) {
+        connection.query(query, secured, function(err, data) {
             if (err) throw err;
         });
 
