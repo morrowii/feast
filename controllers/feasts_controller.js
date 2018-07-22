@@ -4,7 +4,7 @@ var express = require('express')
 var router = express.Router()
 
 // define the index/select route
-app.get('/', function (req, res) {
+router.get('/', function (req, res) {
     var data = feast.selectAll();
     res.render('index', { feasts: data } );
 });

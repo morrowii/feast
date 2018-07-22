@@ -1,20 +1,28 @@
 
-{{#each feasts}}
+<div class='col-6'>
 
-    {{#unless devoured}}
+    {{#each feasts}}
 
-        <div class='col-6'>
-            
-        </div>
+        {{#unless devoured}}
 
-    {{/unless}}
+            <h3 class='d-inline'>{{feast_name}}</h3><button class='d-inline'>Devour</button>
 
-    {{#if devoured}}
+        {{/unless}}
 
-        <div class='col-6'>
+    {{/each}}
 
-        </div>
+</div>
 
-    {{/if}}
+<div class='col-6'>
 
-{{/each}}
+    {{#each feasts}}
+
+        {{#if devoured}}
+
+            <h3 class='d-inline'>{{feast_name}}</h3><h3 class='d-inline'>Devoured</h3>
+
+        {{/if}}
+
+    {{/each}}
+
+</div>

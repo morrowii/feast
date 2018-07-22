@@ -8,7 +8,7 @@ module.exports = function ORM(table) {
 
     this.selectAll = function selectAll(model) {
         
-        var query = `SELECT * FROM ${this.tableName}`;
+        var query = `SELECT * FROM ${this.table}`;
 
         connection.query(query, function(err, data) {
             if (err) throw err;

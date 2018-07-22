@@ -7,7 +7,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
-  database: 'feastDB',
+  database: 'feastdb',
   multipleStatements: true
 });
 
