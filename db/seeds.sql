@@ -2,6 +2,6 @@
 use feastDB;
 
 insert into feasts (feast_name, devoured) values
-('roast chicken and potatoes', 0),
-('boar ribs and rye loaf', 0),
-('dragon blood stew', 0)
+('roast chicken and potatoes', false),
+('boar ribs and rye loaf', false),
+('dragon blood stew', false);

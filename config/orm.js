@@ -6,48 +6,34 @@ module.exports = function ORM(table) {
     this.connection = connection;
     this.table = table;
 
-    this.selectAll = function selectAll(model) {
+    this.selectAll = function(callback) {
         
         var query = `SELECT * FROM ${this.table}`;
 
         connection.query(query, function(err, data) {
             if (err) throw err;
-            return data;
+            else {
+                callback(data);
+            }
         });
 
     }
 
-    // Able to take more keys/values than currently needed to futue-proof
-    this.insertOne = function insertOne(model) {
+    this.insertOne = function(reqBody) {
 
-        var keys = Object.keys(model);
-        var values = Object.values(model);
-        var escapes = keys.map( (x) => '?');
-        var secured = keys.concat(values);
-        var query = `INSERT INTO ${this.tableName} (${escapes}) VALUES (${escapes})`
+        var query = `INSERT INTO ${this.table} (feast_name, devoured) VALUES (?, ?)`;
 
-        connection.query(query, secured, function(err, data) {
+        connection.query(query, [reqBody.feast_name, reqBody.devoured], function(err, data) {
             if (err) throw err;
         });
 
     }
 
-    // Able to take more keys/values than currently needed to futue-proof
-    this.updateOne = function updateOne(model) {
+    this.updateOne = function(reqBody) {
 
-        var keys = Object.keys(model);
-        var values = Object.values(model);
-        var escapes = keys.map( (x) => '? = ?');
-        var secured = [];
+        var query = `UPDATE ${this.table} SET devoured = true WHERE feast_name = ?`;
 
-        for (var i = 0; i < keys.length; i++) {
-            secured.push(keys[i], values[i]);
-        }
-        secured.push(keys[0], values[0]);
-
-        var query = `UPDATE ${this.tableName} SET ${escapes} WHERE ? = ?`;
-
-        connection.query(query, secured, function(err, data) {
+        connection.query(query, [reqBody.feast_name], function(err, data) {
             if (err) throw err;
         });
 

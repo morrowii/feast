@@ -10,10 +10,13 @@ var port = process.env.PORT;
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-app.use('/', feastRoutes);
+app.use(express.static('./public'));
+
 app.use(bparse.urlencoded({ extended: true }));
 app.use(bparse.text());
 app.use(bparse.json());
+
+app.use('/', feastRoutes);
 
 app.listen(port, function() {
     console.log(`Listening on port: ${port}`);

@@ -16,9 +16,9 @@
     <div class='container-fluid'>
 
         <div class='row'>
-            <div class='col d-flex justify-content-center m-3'>
-                <img src=''>
-                <h1>Welcome to the feast of kings!</h1>
+            <div class='col d-flex flex-column'>
+                <h1 class='mx-auto my-2'>Welcome to the feast of kings!</h1>
+                <img class='mx-auto my-2' src='/assets/images/feast-table.png'>
             </div>
         </div>
 
@@ -27,8 +27,8 @@
         </div>
 
         <div class='row'>
-            <div class='col d-flex justify-content-center'>
-                <form class='d-flex flex-column w-25'>
+            <div class='col d-flex justify-content-center my-3'>
+                <form class='d-flex flex-column w-50'>
                     <div class="form-group">
                         <label for="feast-input"></label>
                         <textarea class="form-control" id="feast-input" rows="3"></textarea>
@@ -49,12 +49,23 @@
     <script>
 
         $('form').on('click', '#order-button', function() {
-            event.preventDefault();
             var feastOrder = {
-                feast_name: $('textarea').text(),
-                devoured: 0
+                feast_name: $('#feast-input').val(),
+                devoured: false
             };
             $.post('/insert', feastOrder);
+        });
+
+        $('.devour').on('click', function() {
+            var devourFeast = {
+                feast_name: $(this).attr('data-feast')
+            };
+            $.ajax({
+                url: '/update',
+                type: 'PUT',
+                dataType: 'json',
+                data: devourFeast
+            });
         });
 
     </script>
