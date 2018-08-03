@@ -12,13 +12,13 @@ router.get('/', function (req, res) {
 // define the insert route
 router.post('/insert', function (req, res) {
     feast.insertOne(req.body, function() {
-        res.redirect('/');
+        res.json({ redirect_url: "/"});
     });
 });
 // define the update route
 router.put('/update', function (req, res) {
     feast.updateOne(req.body, function() {
-        res.redirect('/'); // NOT WORKING
+        res.json({ redirect_url: "/"});
     });
 });
 
