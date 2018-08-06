@@ -1,9 +1,9 @@
 
-drop database if exists feastDB;
+drop database if exists bopi8w9wr7bkhbph;
 
-create database feastDB;
+create database if not exists bopi8w9wr7bkhbph;
 
-use feastDB;
+use bopi8w9wr7bkhbph;
 
 create table feasts (
 	id int not null auto_increment,
